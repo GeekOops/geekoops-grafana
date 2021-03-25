@@ -39,6 +39,6 @@
     port: "{{influxdb_collectd_port}}/udp"
     permanent: true
     state: enabled
-  when: config_firewall and open_collectd_port
+  when: config_firewall and influxdb_collectd and open_collectd_port
   notify: reload firewalld
   tags: ['influxdb', 'firewalld']
