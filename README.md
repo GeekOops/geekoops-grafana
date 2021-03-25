@@ -42,6 +42,7 @@ And a more extended example, configure `grafana` with `influxdb` and enable `col
              firewall_zone: "public"
              open_grafana_port: true
              influxdb: true
+             influxdb_collectd: true
              open_influxdb_port: true
              open_collectd_port: true
 
