@@ -32,6 +32,20 @@ Easy ansible role for setup of `grafana` with a custom backend. Currently only `
       roles:
          - { role: geekoops-grafana }
 
+And a more extended example, configure `grafana` with `influxdb` and enable `collectd`
+
+    - hosts: jellyfish
+      roles:
+         - role: geekoops-grafana
+           vars:
+             config_firewall: true
+             firewall_zone: "public"
+             open_grafana_port: true
+             influxdb: true
+             open_influxdb_port: true
+             open_collectd_port: true
+
+
 ## License
 
 MIT
