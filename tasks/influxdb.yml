@@ -15,19 +15,19 @@
     mode: 0640
   tags: ['influxdb']
   notify: restart influxdb
-  
+
 - name: Ensure influxdb is enabled
   systemd:
     name: influxdb
     state: started
     enabled: true
   tags: ['influxdb']
-  
+
 - name: Ensure influxdb firewall port is open
   firewalld:
     zone: "{{ firewall_zone }}"
     port: "{{influxdb_port}}/tcp"
-    permanent: yes
+    permanent: true
     state: enabled
   when: config_firewall and open_influxdb_port
   notify: reload firewalld
@@ -37,10 +37,8 @@
   firewalld:
     zone: "{{ firewall_zone }}"
     port: "{{influxdb_collectd_port}}/udp"
-    permanent: yes
+    permanent: true
     state: enabled
   when: config_firewall and open_collectd_port
   notify: reload firewalld
   tags: ['influxdb', 'firewalld']
-  
-  

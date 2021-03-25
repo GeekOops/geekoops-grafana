@@ -5,19 +5,19 @@
     name: "{{ packages_grafana }}"
     state: present
   tags: ['grafana']
-  
+
 - name: Ensure grafana is started
   systemd:
     name: grafana-server
     state: started
     enabled: true
   tags: ['grafana']
-  
+
 - name: Ensure grafana firewall port is open
   firewalld:
     zone: "{{ firewall_zone }}"
     port: "{{grafana_port}}/tcp"
-    permanent: yes
+    permanent: true
     state: enabled
   when: config_firewall and open_grafana_port
   notify: reload firewalld
