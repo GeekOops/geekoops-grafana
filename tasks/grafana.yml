@@ -6,7 +6,7 @@
     state: present
   tags: ['grafana']
 
-- name: Ensure grafana is started
+- name: Ensure grafana is started and enabled
   systemd:
     name: grafana-server
     state: started
