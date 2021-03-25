@@ -1,0 +1,29 @@
+### InfluxDB config file managed by the grafana-influxdb ansible role
+
+[meta]
+  # Where the metadata/raft database is stored
+  dir = "/var/lib/influxdb/meta"
+
+[data]
+  # The directory where the TSM storage engine stores TSM files.
+  dir = "/var/lib/influxdb/data"
+
+  # The directory where the TSM storage engine stores WAL files.
+  wal-dir = "/var/lib/influxdb/wal"
+
+[http]
+  enabled = true
+  flux-enabled = false
+  bind-address = "{{influxdb_bind}}:{{influxdb_port}}"
+
+[logging]
+  format = "auto"
+  level = "error"
+
+{% if influxdb_collectd %}
+[[collectd]]
+  enabled = true
+  bind-address = "{{influxdb_collectd_bind}}:{{influxdb_collectd_port}}"
+  database = "{{influxdb_collectd_database}}"
+  typesdb = "/usr/share/collectd/types.db"
+{% endif %}

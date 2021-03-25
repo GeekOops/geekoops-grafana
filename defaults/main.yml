@@ -1,0 +1,18 @@
+---
+# defaults file for geekoops-grafana
+
+config_firewall: false
+firewall_zone: public
+open_grafana_port: false
+
+grafana_port: 3000
+
+influxdb: false
+influxdb_port: 8086
+influxdb_bind: ""
+open_influxdb_port: false
+influxdb_collectd: false
+influxdb_collectd_database: "collectd"
+influxdb_collectd_port: 25826
+influxdb_collectd_bind: ""
+open_collectd_port: false

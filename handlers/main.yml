@@ -1,0 +1,14 @@
+---
+# handlers file for geekoops-grafana
+
+- name: reload firewalld
+  shell: firewall-cmd --reload
+
+- name: restart influxdb
+  service:
+    name: influxdb
+    state: restarted
+- name: restart grafana
+  service:
+    name: grafana-server
+    state: restarted
