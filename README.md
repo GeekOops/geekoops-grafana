@@ -1,3 +1,5 @@
+[![Test deployment](https://github.com/GeekOops/geekoops-grafana/actions/workflows/CI.yml/badge.svg)](https://github.com/GeekOops/geekoops-grafana/actions/workflows/CI.yml)
+
 # geekoops-grafana
 
 Easy ansible role for setup of `grafana` with a custom backend. Currently only `influxdb` is supported. This ansible role works with
