@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: leap15_2
+    image: grisu48/leap-ansible
+    pre_build_image: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      leap15_2:
+        ansible_python_interpreter: /usr/bin/python3
+        influxdb: true
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
+lint: |
+  set -e
+  yamllint .

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include geekoops-grafana"
+      include_role:
+        name: "geekoops-grafana"
