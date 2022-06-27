@@ -1,0 +1,7 @@
+FROM registry.opensuse.org/opensuse/leap:15.4
+
+# Install systemd and development tools, clear cache
+RUN zypper in -y systemd systemd-sysvinit firewalld python3 python3-firewall curl && rm -rf /var/cache/* && rm -f /etc/machine-id /var/lib/dbus/machine-id
+
+# Start container with systemd
+ENTRYPOINT ["/usr/sbin/init"]

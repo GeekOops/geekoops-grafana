@@ -1,6 +1,8 @@
 ---
 galaxy_info:
   author: Felix Niederwanger
+  role_name: nginx
+  namespace: grafana
   description: Configurable grafana installation role
   company: SUSE
   issue_tracker_url: https://github.com/GeekOops/geekoops-grafana/issues

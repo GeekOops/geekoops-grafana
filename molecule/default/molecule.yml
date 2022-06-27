@@ -4,14 +4,23 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: leap15_2
-    image: grisu48/leap-ansible
-    pre_build_image: true
+  - name: leap15_3
+    image: registry.opensuse.org/opensuse/leap:15.3
+    dockerfile: Dockerfile.leap15_3
+    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    capabilities:
-      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+  - name: leap15_4
+    image: registry.opensuse.org/opensuse/leap:15.4
+    dockerfile: Dockerfile.leap15_4
+    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
     privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:
       - /run
       - /tmp
@@ -19,8 +28,9 @@ provisioner:
   name: ansible
   inventory:
     host_vars:
-      leap15_2:
-        ansible_python_interpreter: /usr/bin/python3
+      leap15_3:
+        influxdb: true
+      leap15_4:
         influxdb: true
 verifier:
   name: testinfra

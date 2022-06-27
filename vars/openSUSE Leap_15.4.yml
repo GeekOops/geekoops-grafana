@@ -1,3 +1,5 @@
 ---
+# openSUSE Leap 15.3 specific variables
+
 packages_grafana: ['grafana', 'grafana-piechart-panel', 'grafana-status-panel']
 packages_influxdb: ['influxdb']
