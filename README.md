@@ -5,6 +5,7 @@
 Easy ansible role for setup of `grafana` with a custom backend. Currently only `influxdb` is supported. This ansible role works with
 
 - openSUSE Leap 15.3
+- openSUSE Leap 15.4
 
 
 ## Role Variables
