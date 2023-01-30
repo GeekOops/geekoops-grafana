@@ -4,23 +4,12 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: leap15_3
-    image: registry.opensuse.org/opensuse/leap:15.3
-    dockerfile: Dockerfile.leap15_3
-    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
-    privileged: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /run
-      - /tmp
   - name: leap15_4
     image: registry.opensuse.org/opensuse/leap:15.4
     dockerfile: Dockerfile.leap15_4
     command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
     privileged: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroupns: host
     tmpfs:
       - /run
       - /tmp
@@ -28,14 +17,7 @@ provisioner:
   name: ansible
   inventory:
     host_vars:
-      leap15_3:
-        influxdb: true
       leap15_4:
         influxdb: true
 verifier:
   name: testinfra
-  lint:
-    name: flake8
-lint: |
-  set -e
-  yamllint .
