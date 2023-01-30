@@ -8,7 +8,7 @@ import os
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
  
 def test_grafana_http(host):
-	cmd = host.run("curl -v http://127.0.0.1:3000")
+	cmd = host.run("curl -v --fail http://127.0.0.1:3000")
 	assert cmd.succeeded
 	assert "/login" in cmd.stdout
 	assert "Found" in cmd.stdout
